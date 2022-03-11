@@ -10,6 +10,36 @@ timemark = datetime.datetime.today().strftime("%Y%m%d-%H%M")
 
 # read every single file and save as pkl
 class ExtractRaw(luigi.Task):
+    """
+    Luigi task to read every file in project data folder and save as a pickle file.
+    ExtractRaw is called once for every file in project data folder (parallel process).
+
+    Parameters
+    ----------
+    data_key : str
+        identifies the dataset type (eg. 'payslips')  
+
+    myfile : str
+        file to be read (from Extract.file_list)
+
+    Methods
+    --------
+    requires()
+        Defines the task dependencies.
+
+    output()
+        Defines the task target output.
+
+    run()
+        Defines the task behaviour.
+    
+    Returns
+    -------
+    data : pickle file   
+        pickle file for each file in project data folder
+
+    """
+
     data_key = luigi.Parameter()
     myfile = luigi.Parameter()
 
